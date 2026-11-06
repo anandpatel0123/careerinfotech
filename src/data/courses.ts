@@ -1,0 +1,447 @@
+import {
+  Binary,
+  Calculator,
+  ClipboardCheck,
+  CloudUpload,
+  Coffee,
+  CodeXml,
+  Database,
+  FileImage,
+  FileSpreadsheet,
+  GraduationCap,
+  Keyboard,
+  Mail,
+  Monitor,
+  Network,
+  TableProperties,
+  type LucideIcon,
+} from 'lucide-react';
+
+export type CategoryId = 'programming' | 'diploma' | 'accounting' | 'typing' | 'digital';
+
+export const CATEGORIES: { id: CategoryId; label: string }[] = [
+  { id: 'programming', label: 'Programming & Development' },
+  { id: 'diploma', label: 'Computer Diploma Courses' },
+  { id: 'accounting', label: 'Accounting & Business Applications' },
+  { id: 'typing', label: 'Typing & Competitive Exam Preparation' },
+  { id: 'digital', label: 'Digital Skills & Online Services' },
+];
+
+export interface Course {
+  id: string;
+  /** Short name used on cards and in the enquiry dropdown. */
+  name: string;
+  /** Full title, as printed in the syllabus PDF. */
+  title: string;
+  category: CategoryId;
+  icon: LucideIcon;
+  /** Header gradient of the card: [light stop, dark stop]. */
+  colors: [string, string];
+  summary: string;
+  overview: string;
+  modules: string[];
+  practical: string;
+  outcome: string;
+  /** Page of the syllabus PDF that lists this course's modules. */
+  pdfPage: number;
+}
+
+export const COURSES: Course[] = [
+  {
+    id: 'c-cpp',
+    name: 'C / C++',
+    title: 'C Programming & C++',
+    category: 'programming',
+    icon: Binary,
+    colors: ['#1F6FDB', '#0F479F'],
+    summary: 'Programming basics to advanced object-oriented concepts.',
+    overview:
+      'Build programming fundamentals, logical thinking and problem-solving skills using C and object-oriented C++.',
+    modules: [
+      'Computer programming basics, algorithms, flowcharts and pseudocode',
+      'C language structure, tokens, variables, constants and data types',
+      'Operators, expressions, input/output and type conversion',
+      'Conditional statements, loops, nested loops and pattern programs',
+      'Arrays, strings and user-defined functions',
+      'Pointers, pointer arithmetic and dynamic memory basics',
+      'Structures, unions, enumerations and file handling',
+      'C++ introduction, classes, objects, constructors and destructors',
+      'Encapsulation, inheritance, polymorphism and abstraction',
+      'Function/operator overloading, templates and exception handling',
+      'Basic STL concepts: vector, string, map and algorithms',
+    ],
+    practical:
+      'Create calculator, marksheet, number/pattern programs, record-management and small console projects.',
+    outcome: 'Write structured programs and understand core procedural and object-oriented concepts.',
+    pdfPage: 2,
+  },
+  {
+    id: 'java',
+    name: 'Java Programming',
+    title: 'Java Programming',
+    category: 'programming',
+    icon: Coffee,
+    colors: ['#D5304A', '#A0172F'],
+    summary: 'Java syntax, object-oriented programming and real projects.',
+    overview:
+      'Learn Java syntax and object-oriented programming with practical console and application exercises.',
+    modules: [
+      'JDK, JRE, JVM, installation and first Java program',
+      'Variables, primitive data types, operators and type casting',
+      'Decision-making, loops, arrays and strings',
+      'Methods, parameter passing, recursion and packages',
+      'Classes, objects, constructors, this and static',
+      'Inheritance, interfaces, abstraction and polymorphism',
+      'Access modifiers, encapsulation and object relationships',
+      'Exception handling and custom exceptions',
+      'Collections: List, Set, Map and iteration',
+      'File input/output and basic serialization concepts',
+      'Introduction to JDBC and connecting Java with a database',
+      'Debugging, clean code and basic project structure',
+    ],
+    practical:
+      'Build a student record system, billing utility or library-management console application.',
+    outcome:
+      'Develop a foundation for Java application development and database-connected projects.',
+    pdfPage: 2,
+  },
+  {
+    id: 'sql',
+    name: 'SQL & Database Management',
+    title: 'SQL & Database Management',
+    category: 'programming',
+    icon: Database,
+    colors: ['#1E7FD6', '#11589F'],
+    summary: 'Database concepts, SQL querying and data management.',
+    overview:
+      'Understand relational databases and retrieve, organise and update information using SQL.',
+    modules: [
+      'Database concepts, tables, rows, columns, schemas and data types',
+      'Relational database concepts, primary keys and foreign keys',
+      'CREATE, ALTER, DROP and TRUNCATE',
+      'INSERT, UPDATE, DELETE and SELECT',
+      'WHERE, ORDER BY, DISTINCT, aliases and filtering operators',
+      'Aggregate functions, GROUP BY and HAVING',
+      'Joins: INNER, LEFT, RIGHT and CROSS JOIN',
+      'Subqueries, nested queries and set operations',
+      'Constraints, indexes and views',
+      'Transactions and COMMIT / ROLLBACK concepts',
+      'Normalization basics and database design',
+      'Backup, restore and safe query practices',
+    ],
+    practical:
+      'Create a sample student or shop database and write reports using joins, grouping and subqueries.',
+    outcome: 'Write SQL queries to create, manage and analyse relational data.',
+    pdfPage: 3,
+  },
+  {
+    id: 'html-css',
+    name: 'HTML & CSS',
+    title: 'HTML & CSS – Web Design',
+    category: 'programming',
+    icon: CodeXml,
+    colors: ['#E8590C', '#B93A06'],
+    summary: 'Build structured, responsive and modern websites.',
+    overview: 'Create structured, attractive and responsive web pages using HTML and CSS.',
+    modules: [
+      'How websites work: browsers, servers, URLs and web-page structure',
+      'HTML document structure, headings, paragraphs, links and images',
+      'Lists, tables, forms, inputs, labels and buttons',
+      'Semantic HTML elements and accessibility basics',
+      'CSS syntax, selectors, cascade, inheritance and specificity',
+      'Colours, backgrounds, typography, borders and spacing',
+      'Box model, display, positioning and overflow',
+      'Flexbox and CSS Grid layouts',
+      'Responsive design, media queries and mobile-first layouts',
+      'Navigation bars, cards, buttons and page sections',
+      'Embedding video, icons and external resources',
+      'Basic browser testing and publishing a static website',
+    ],
+    practical:
+      'Design a personal profile page, institute landing page, course listing and contact form layout.',
+    outcome: 'Build and style responsive multi-section websites.',
+    pdfPage: 3,
+  },
+  {
+    id: 'pgdca',
+    name: 'PGDCA',
+    title: 'PGDCA – Post Graduate Diploma in Computer Applications',
+    category: 'diploma',
+    icon: GraduationCap,
+    colors: ['#8A3BB0', '#5A1F8C'],
+    summary: 'Post Graduate Diploma in Computer Applications for advanced IT skills.',
+    overview:
+      'An advanced computer-applications pathway combining office tools, programming, databases and practical projects.',
+    modules: [
+      'Computer architecture, operating-system concepts and software fundamentals',
+      'Advanced MS Office: Word, Excel, PowerPoint and productivity workflows',
+      'Programming fundamentals and problem-solving using a selected language',
+      'Object-oriented programming concepts',
+      'Database management, relational design and SQL queries',
+      'Web fundamentals: HTML, CSS and introductory scripting concepts',
+      'Networking basics, internet protocols and cyber-safety awareness',
+      'Software-development life cycle and project documentation',
+      'Data handling, reports and presentation of information',
+      'Practical project planning, testing and documentation',
+    ],
+    practical:
+      'Complete an integrated project such as an institute, inventory, student or office-record management system.',
+    outcome: 'Develop broader computer-application knowledge and practical project experience.',
+    pdfPage: 4,
+  },
+  {
+    id: 'dca',
+    name: 'DCA',
+    title: 'DCA – Diploma in Computer Applications',
+    category: 'diploma',
+    icon: Monitor,
+    colors: ['#23883A', '#146B2A'],
+    summary: 'Diploma in Computer Applications covering everyday computer skills.',
+    overview:
+      'A foundation-level programme covering everyday computer use, office productivity and internet skills.',
+    modules: [
+      'Computer fundamentals, hardware, software and operating systems',
+      'Windows desktop, files, folders, settings and shortcuts',
+      'Keyboard and mouse skills, file management and printing',
+      'MS Word: formatting, tables, page setup, headers and mail merge basics',
+      'MS Excel: formulas, functions, sorting, filtering and charts',
+      'MS PowerPoint: slides, themes, layouts and presentations',
+      'Internet browsing, search skills, downloads and online safety',
+      'Email creation, attachments, folders and professional email etiquette',
+      'PDF creation, scanning, printing and document handling',
+      'Basic computer terminology and practical lab exercises',
+    ],
+    practical: 'Prepare letters, formatted reports, spreadsheets, presentations and email attachments.',
+    outcome: 'Use a computer confidently for study, office and day-to-day digital tasks.',
+    pdfPage: 4,
+  },
+  {
+    id: 'tally',
+    name: 'Tally Prime with GST',
+    title: 'Tally Prime – Accounting with GST',
+    category: 'accounting',
+    icon: Calculator,
+    colors: ['#2B4C8F', '#172F60'],
+    summary: 'Accounting, inventory, GST and business record management.',
+    overview: 'Learn computerised accounting workflows and business records using Tally Prime.',
+    modules: [
+      'Accounting fundamentals: transactions, debit, credit and accounting principles',
+      'Company creation, financial year and configuration',
+      'Groups, ledgers, vouchers and opening balances',
+      'Payment, receipt, contra, journal and sales/purchase vouchers',
+      'Inventory masters, stock groups, units and godowns',
+      'Purchase, sales, returns, discounts and stock tracking',
+      'GST concepts, tax ledgers and GST configuration',
+      'GST sales/purchase entries and tax invoice basics',
+      'Day book, ledger, trial balance, profit and loss and balance sheet',
+      'Bank reconciliation and outstanding reports',
+      'Payroll introduction and employee records',
+      'Data backup, restore, export and print options',
+    ],
+    practical:
+      'Enter sample business transactions, maintain stock and generate accounting and GST-related reports.',
+    outcome: 'Perform common bookkeeping and business-accounting tasks in Tally Prime.',
+    pdfPage: 4,
+  },
+  {
+    id: 'erp',
+    name: 'ERP – Enterprise Resource Planning',
+    title: 'ERP – Enterprise Resource Planning',
+    category: 'accounting',
+    icon: Network,
+    colors: ['#0F8A7E', '#0A6A61'],
+    summary: 'How integrated systems run business and operations management.',
+    overview:
+      'Understand how organisations use integrated systems to manage business operations and information.',
+    modules: [
+      'ERP purpose, modules and end-to-end business processes',
+      'Organisation structure, users, roles and access permissions',
+      'Master data: customers, vendors, products and services',
+      'Procurement: purchase requests, purchase orders and goods receipt',
+      'Inventory: stock movement, warehouse and material tracking',
+      'Sales: quotations, orders, delivery and invoicing concepts',
+      'Finance: accounts payable, receivable and general-ledger concepts',
+      'HR and payroll process overview',
+      'Workflow approvals, audit trails and operational reports',
+      'Data accuracy, controls and basic ERP implementation lifecycle',
+    ],
+    practical:
+      'Map a sample purchase-to-payment and order-to-cash workflow using demonstrations or a training ERP environment.',
+    outcome: 'Understand integrated business processes and the role of ERP systems.',
+    pdfPage: 5,
+  },
+  {
+    id: 'typing',
+    name: 'English & Hindi Typing',
+    title: 'English & Hindi Typing',
+    category: 'typing',
+    icon: Keyboard,
+    colors: ['#C42673', '#931756'],
+    summary: 'Build typing speed and accuracy in English and Hindi.',
+    overview:
+      'Improve keyboard familiarity, typing speed and accuracy for office work and computer-based examinations.',
+    modules: [
+      'Keyboard layout, finger placement and correct sitting posture',
+      'Home-row practice and touch-typing technique',
+      'English letter combinations, words, sentences and paragraphs',
+      'Capital letters, punctuation, numbers and symbols',
+      'Hindi typing layout and input-method introduction',
+      'Hindi character practice, words, sentences and paragraphs',
+      'Speed-building drills with accuracy checks',
+      'Timed passages, mock tests and progress tracking',
+      'Common typing errors and methods to reduce mistakes',
+      'Document typing, editing and formatting practice',
+    ],
+    practical: 'Regular timed typing tests in English and Hindi with speed and accuracy review.',
+    outcome:
+      'Build consistent typing technique; target speed depends on practice and the relevant test requirements.',
+    pdfPage: 5,
+  },
+  {
+    id: 'cpct',
+    name: 'CPCT Preparation',
+    title: 'CPCT – Computer Proficiency & Certification Test Preparation',
+    category: 'typing',
+    icon: ClipboardCheck,
+    colors: ['#6A2FC4', '#47199A'],
+    summary: 'Structured preparation for the Computer Proficiency & Certification Test.',
+    overview:
+      'Prepare for computer-proficiency assessment areas through structured practice. The latest official exam pattern should always be checked before a test.',
+    modules: [
+      'Computer fundamentals, hardware, software and operating systems',
+      'Windows operations, file management and common shortcuts',
+      'Word-processing concepts and document formatting',
+      'Spreadsheet concepts, formulas, functions and data handling',
+      'Presentation software and slide operations',
+      'Internet, browser use, email and digital communication',
+      'Computer networks and basic cyber safety',
+      'General computer awareness and terminology',
+      'English and Hindi typing practice, as applicable',
+      'Objective-question practice, mock tests and time management',
+    ],
+    practical: 'Attempt topic-wise quizzes, full-length practice tests and timed typing exercises.',
+    outcome:
+      'Strengthen computer awareness and exam readiness. This course does not itself guarantee a CPCT result or certificate.',
+    pdfPage: 6,
+  },
+  {
+    id: 'online-work',
+    name: 'Online Work & Digital Services',
+    title: 'Online Work & Digital Services',
+    category: 'digital',
+    icon: CloudUpload,
+    colors: ['#1871D6', '#0C4FA6'],
+    summary: 'Online forms, document work, data entry and safe digital services.',
+    overview:
+      'Develop practical skills for common online form, document and digital-service tasks. Actual services depend on current rules and authorised access.',
+    modules: [
+      'Computer and internet readiness, browser settings and safe browsing',
+      'Creating, organising and sharing digital documents',
+      'Online forms: reading instructions, entering data and uploading files',
+      'Scanning, resizing, naming and converting documents to PDF',
+      'Email communication, attachments and application follow-up',
+      'Online appointment, registration and application workflows',
+      'Using official portals and verifying website authenticity',
+      'Digital payments: safety principles and transaction awareness',
+      'Data entry, spreadsheet updates and document preparation',
+      'Customer communication, privacy and responsible handling of personal data',
+      'Recognising scams, fake links and unauthorised service requests',
+    ],
+    practical:
+      'Practise sample forms and document workflows using dummy data and authorised training environments.',
+    outcome:
+      'Handle routine digital tasks carefully while protecting personal and financial information.',
+    pdfPage: 6,
+  },
+  {
+    id: 'ms-office',
+    name: 'MS Office',
+    title: 'MS Office – Word, Excel & PowerPoint',
+    category: 'digital',
+    icon: FileSpreadsheet,
+    colors: ['#D4470F', '#A83304'],
+    summary: 'Word, Excel and PowerPoint for study, office and business work.',
+    overview: 'Build productivity skills for school, college, office and business administration.',
+    modules: [
+      'Word: document creation, formatting, tables, page layout, references and mail merge basics',
+      'Excel: cell references, formulas, IF, SUM, AVERAGE, COUNT and lookup concepts',
+      'Excel: sorting, filtering, conditional formatting, charts and data validation',
+      'PowerPoint: slide layouts, themes, images, charts, transitions and presentation delivery',
+      'File formats, printing, PDF export and collaboration basics',
+    ],
+    practical: 'Create a formal letter, monthly expense sheet, marksheet and business presentation.',
+    outcome: 'Prepare common office documents and reports independently.',
+    pdfPage: 8,
+  },
+  {
+    id: 'internet-email',
+    name: 'Internet & Email',
+    title: 'Internet, Email & Digital Literacy',
+    category: 'digital',
+    icon: Mail,
+    colors: ['#0B83A8', '#086582'],
+    summary: 'Use the internet confidently and communicate professionally.',
+    overview:
+      'Use internet services confidently, communicate professionally and protect information online.',
+    modules: [
+      'Browser basics, search techniques and evaluating information',
+      'Email setup, composing, replying, forwarding and attachments',
+      'Cloud storage, file sharing and document collaboration concepts',
+      'Video meetings and online communication etiquette',
+      'Passwords, multi-factor authentication, privacy and phishing awareness',
+      'Downloading, uploading, printing and PDF handling',
+    ],
+    practical: 'Send a professional email, organise files and complete a sample online workflow.',
+    outcome: 'Use common internet and communication tools safely.',
+    pdfPage: 8,
+  },
+  {
+    id: 'data-entry',
+    name: 'Data Entry & Documentation',
+    title: 'Data Entry & Documentation',
+    category: 'digital',
+    icon: TableProperties,
+    colors: ['#3F51C8', '#2A389C'],
+    summary: 'Prepare, check and maintain accurate digital records.',
+    overview:
+      'Improve accuracy and speed while preparing, checking and maintaining digital records.',
+    modules: [
+      'Data-entry standards, field types and validation',
+      'Spreadsheet entry, formatting, sorting and filtering',
+      'Copying data carefully and checking for duplicates',
+      'Document formatting, templates and file naming',
+      'PDF conversion, scanning and document organisation',
+      'Quality checks, confidentiality and backup practices',
+    ],
+    practical: 'Prepare a sample customer list, inventory sheet and formatted office document.',
+    outcome: 'Maintain clear, accurate and well-organised digital records.',
+    pdfPage: 8,
+  },
+  {
+    id: 'pdf-image',
+    name: 'PDF & Image Editing',
+    title: 'PDF, Image & Document Handling',
+    category: 'digital',
+    icon: FileImage,
+    colors: ['#D81B2C', '#A50F1E'],
+    summary: 'Prepare PDFs, images and documents for offices and online forms.',
+    overview: 'Learn everyday document-preparation tasks used in offices and online applications.',
+    modules: [
+      'Create, combine, split and organise PDF files using appropriate tools',
+      'Convert documents to and from PDF where supported',
+      'Scan documents and adjust orientation and readability',
+      'Resize and crop images while preserving legibility',
+      'Rename, compress and organise files for uploads',
+      'Check file size, format and page order before submission',
+    ],
+    practical: 'Prepare a clean sample document set for an online application using dummy information.',
+    outcome: 'Prepare files in commonly requested digital formats.',
+    pdfPage: 9,
+  },
+];
+
+export const findCourse = (id: string | null | undefined) =>
+  COURSES.find((course) => course.id === id);
+
+export const categoryLabel = (id: CategoryId) =>
+  CATEGORIES.find((category) => category.id === id)?.label ?? '';

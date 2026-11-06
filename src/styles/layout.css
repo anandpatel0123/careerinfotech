@@ -1,0 +1,474 @@
+/* Brand strip (desktop only) */
+
+.topbar {
+  display: none;
+  background: var(--white);
+}
+
+.topbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 12px;
+}
+
+.topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+}
+
+.topbar__brand .brand-logo {
+  width: 76px;
+  height: 76px;
+}
+
+.topbar__name {
+  display: block;
+  color: var(--navy-900);
+  font-size: clamp(1.75rem, 2.6vw, 2.375rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.topbar__name span {
+  color: var(--red);
+}
+
+.topbar__descriptor {
+  display: block;
+  color: var(--navy-800);
+  font-weight: 700;
+}
+
+.topbar__contact {
+  display: grid;
+  gap: 4px;
+  color: var(--ink);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.topbar__contact li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar__contact svg {
+  flex: none;
+  color: var(--red);
+}
+
+.topbar__contact a {
+  text-decoration: none;
+}
+
+.topbar__contact a:hover {
+  color: var(--red);
+}
+
+.topbar__phone {
+  font-size: 1.0625rem;
+  font-weight: 800;
+}
+
+/* Sticky navigation */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: linear-gradient(90deg, var(--navy-900), var(--navy-800));
+  color: var(--white);
+  box-shadow: 0 2px 14px rgb(6 19 46 / 30%);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: var(--nav-height);
+}
+
+.logo-badge {
+  display: inline-flex;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  padding: 2px;
+  border-radius: 50%;
+  background: var(--white);
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.navbar__brand-text {
+  display: grid;
+  line-height: 1.2;
+}
+
+.navbar__brand-text strong {
+  font-size: 1.0625rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.navbar__brand-text small {
+  color: var(--yellow);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.navbar__links,
+.navbar__cta {
+  display: none;
+}
+
+.navbar__links {
+  align-items: center;
+  gap: 4px;
+}
+
+.navbar__links a {
+  display: block;
+  padding: 8px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.navbar__links a:hover {
+  background: rgb(255 255 255 / 12%);
+}
+
+.navbar__links a.is-active {
+  background: var(--yellow);
+  color: var(--navy-900);
+}
+
+.navbar :focus-visible,
+.footer :focus-visible,
+.hero :focus-visible,
+.cta-band :focus-visible,
+.contact-panel :focus-visible {
+  outline-color: var(--yellow);
+}
+
+.navbar__toggle {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 12%);
+  color: var(--white);
+}
+
+/* Mobile menu */
+
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: calc(100dvh - var(--nav-height));
+  padding: 8px var(--gutter) 20px;
+  overflow-y: auto;
+  background: var(--navy-900);
+  box-shadow: 0 18px 30px rgb(6 19 46 / 40%);
+  animation: rise 0.2s var(--ease);
+}
+
+.mobile-menu li + li {
+  border-top: 1px solid rgb(255 255 255 / 12%);
+}
+
+.mobile-menu a:not(.btn) {
+  display: block;
+  padding: 14px 8px;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.mobile-menu a.is-active {
+  color: var(--yellow);
+}
+
+.mobile-menu__actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+@media (min-width: 768px) {
+  .mobile-menu__actions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --nav-height: 60px;
+  }
+
+  .topbar {
+    display: block;
+  }
+
+  .navbar__links,
+  .navbar__cta {
+    display: inline-flex;
+  }
+
+  .navbar__toggle,
+  .mobile-menu {
+    display: none;
+  }
+
+  /* The compact logo only appears once the brand strip has scrolled out of view. */
+  .navbar__brand {
+    display: none;
+  }
+
+  .navbar--stuck .navbar__brand {
+    display: flex;
+    animation: rise 0.25s var(--ease);
+  }
+
+  .navbar__links {
+    margin-right: auto;
+  }
+
+  .navbar--stuck .navbar__links {
+    margin-inline: auto;
+  }
+
+  .navbar__cta {
+    min-height: 42px;
+  }
+}
+
+/* Footer */
+
+.footer {
+  padding-top: clamp(40px, 6vw, 64px);
+  padding-bottom: calc(var(--action-bar-height) + 16px + env(safe-area-inset-bottom));
+  background: var(--navy-950);
+  color: #c5d0e6;
+  font-size: 0.9375rem;
+}
+
+.footer__grid {
+  display: grid;
+  gap: 32px;
+}
+
+.footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.footer__brand .logo-badge {
+  width: 56px;
+  height: 56px;
+}
+
+.footer__name {
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.footer__tagline {
+  color: var(--yellow);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.footer__whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 12px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--whatsapp);
+  color: var(--white);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.footer__whatsapp:hover {
+  background: var(--whatsapp-dark);
+}
+
+.footer__title {
+  margin-bottom: 12px;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.footer__list a,
+.footer__list button {
+  display: inline-block;
+  padding: 6px 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer__list a:hover,
+.footer__list button:hover,
+.footer__contact a:hover {
+  color: var(--yellow);
+}
+
+.footer__contact {
+  display: grid;
+  gap: 12px;
+}
+
+.footer__contact li {
+  display: flex;
+  gap: 10px;
+  overflow-wrap: anywhere;
+}
+
+.footer__contact li > svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--yellow);
+}
+
+.footer__contact strong {
+  color: var(--white);
+}
+
+.footer__contact a {
+  text-decoration: none;
+}
+
+.footer__contact a svg {
+  display: inline;
+  vertical-align: -2px;
+}
+
+.footer__legal {
+  display: grid;
+  gap: 10px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid rgb(255 255 255 / 14%);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+}
+
+@media (min-width: 640px) {
+  .footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer__grid {
+    grid-template-columns: 1.5fr 0.8fr 1fr 1.6fr;
+  }
+}
+
+/* Phone action bar and floating WhatsApp button */
+
+.action-bar {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: 0.8fr 1.1fr 1.3fr;
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--white);
+  box-shadow: 0 -4px 18px rgb(6 19 46 / 16%);
+}
+
+.action-bar__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: var(--action-bar-height);
+  padding: 6px;
+  border: 0;
+  background: var(--white);
+  color: var(--navy-900);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.action-bar__item--whatsapp {
+  background: var(--whatsapp);
+  color: var(--white);
+}
+
+.action-bar__item--enquire {
+  background: var(--red);
+  color: var(--white);
+}
+
+.whatsapp-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 30;
+  display: none;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--whatsapp);
+  color: var(--white);
+  box-shadow: 0 10px 26px rgb(11 125 67 / 42%);
+  transition:
+    transform 0.2s var(--ease),
+    background-color 0.2s;
+}
+
+.whatsapp-fab:hover {
+  background: var(--whatsapp-dark);
+  transform: scale(1.07);
+}
+
+@media (min-width: 768px) {
+  .action-bar {
+    display: none;
+  }
+
+  .whatsapp-fab {
+    display: grid;
+  }
+}
